@@ -1,0 +1,255 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+}
+
+.form h2 {
+    margin: 0;
+    text-align: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.group input,
+.group textarea,
+.group select {
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--text-main);
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.group input:focus,
+.group textarea:focus,
+.group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 119, 130, 0.1);
+}
+
+/* Row layout for side-by-side fields */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Radio Group */
+.radioGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.radioLabel:hover {
+    border-color: var(--primary);
+}
+
+.radioLabel input {
+    display: none;
+}
+
+.radioLabel:has(input:checked) {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* Image Upload */
+.imageUpload {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.imagePreview {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.imagePreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.removeImage {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.removeImage:hover {
+    background: var(--error);
+}
+
+.addImage {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.addImage:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.addImage input {
+    display: none;
+}
+
+/* Shipping Cost Input */
+.shippingCost {
+    margin-top: 0.75rem;
+    max-width: 200px;
+}
+
+/* Submit Button */
+.submitBtn {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submitBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Error & Warning */
+.error {
+    color: var(--error);
+    background: rgba(229, 57, 53, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+}
+
+.warning {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+}
+
+/* Location */
+.locationRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.locationBtn {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.locationBtn:hover {
+    border-color: var(--primary);
+}
+
+.locationSuccess {
+    color: var(--success);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .form {
+        padding: 1.5rem;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .radioGroup {
+        flex-direction: column;
+    }
+
+    .radioLabel {
+        justify-content: center;
+    }
+}

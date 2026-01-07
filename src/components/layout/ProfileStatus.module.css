@@ -1,0 +1,115 @@
+.container {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.info {
+    flex: 1;
+}
+
+.username {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.reputation {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.reputation span {
+    color: var(--success);
+}
+
+.connectPrompt {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.connectPrompt::before {
+    content: "💳";
+    font-size: 1.25rem;
+}
+
+/* Create Profile Form */
+.createForm {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.createForm input {
+    flex: 1;
+    max-width: 250px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+}
+
+.createForm button {
+    background: var(--primary);
+    color: white;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    transition: all 0.2s;
+}
+
+.createForm button:hover {
+    background: var(--primary-dark);
+}
+
+.error {
+    color: var(--error);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(229, 57, 53, 0.1);
+    border-radius: var(--radius);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .createForm {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .createForm input {
+        max-width: 100%;
+    }
+}

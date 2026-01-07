@@ -1,0 +1,13 @@
+.mapContainer {
+    height: 300px;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    z-index: 10;
+}
+
+.popup {
+    color: #333;
+}

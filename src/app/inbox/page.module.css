@@ -1,0 +1,185 @@
+.main {
+    padding-bottom: 5rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    width: 100%;
+}
+
+.placeholder {
+    text-align: center;
+    padding: 2rem;
+}
+
+.iconWrapper {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.icon {
+    font-size: 3rem;
+}
+
+.placeholder h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.placeholder p {
+    color: var(--text-muted);
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+/* Preview UI */
+.preview {
+    max-width: 360px;
+    margin: 0 auto 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.previewHeader {
+    background: var(--background);
+    padding: 0.75rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.previewDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+}
+
+.previewDot:first-child {
+    background: #ff5f57;
+}
+
+.previewDot:nth-child(2) {
+    background: #febc2e;
+}
+
+.previewDot:nth-child(3) {
+    background: #28c840;
+}
+
+.previewContent {
+    padding: 1rem;
+}
+
+.mockConvo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mockMsg {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.mockMsgSent {
+    justify-content: flex-end;
+}
+
+.mockAvatar {
+    width: 28px;
+    height: 28px;
+    background: var(--background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.mockBubble {
+    padding: 0.6rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    max-width: 200px;
+}
+
+.mockMsgReceived .mockBubble {
+    background: var(--background);
+    color: var(--text-main);
+    border-bottom-left-radius: 4px;
+}
+
+.mockMsgSent .mockBubble {
+    background: var(--primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* Features */
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.feature span:first-child {
+    font-size: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .placeholder h1 {
+        font-size: 1.5rem;
+    }
+
+    .features {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .preview {
+        margin: 0 0 2rem;
+    }
+}

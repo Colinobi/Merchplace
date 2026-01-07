@@ -1,0 +1,182 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================
+    // HELPER FUNCTIONS
+    // ============================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+    
+    function isParticipant(participants) {
+      return request.auth.uid in participants;
+    }
+    
+    // ============================================
+    // USERS COLLECTION
+    // ============================================
+    
+    match /users/{uid} {
+      // Anyone can read user profiles
+      allow read: if true;
+      
+      // Only the user can create/update their own profile
+      allow create: if isAuthenticated() && isOwner(uid);
+      allow update: if isOwner(uid);
+      
+      // Users cannot delete their profile (soft delete only)
+      allow delete: if false;
+      
+      // FAVORITES SUBCOLLECTION
+      match /favorites/{listingId} {
+        allow read, write: if isOwner(uid);
+      }
+      
+      // NOTIFICATIONS SUBCOLLECTION
+      match /notifications/{notificationId} {
+        allow read: if isOwner(uid);
+        allow create: if isAuthenticated(); // System/other users can create
+        allow update: if isOwner(uid); // Only owner can mark as read
+        allow delete: if isOwner(uid);
+      }
+      
+      // ADDRESSES SUBCOLLECTION
+      match /addresses/{addressId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+    
+    // ============================================
+    // LISTINGS COLLECTION
+    // ============================================
+    
+    match /listings/{listingId} {
+      // Anyone can read listings
+      allow read: if true;
+      
+      // Authenticated users can create listings
+      allow create: if isAuthenticated() 
+        && request.resource.data.sellerId == request.auth.uid;
+      
+      // Only seller can update their listing
+      allow update: if isAuthenticated() 
+        && resource.data.sellerId == request.auth.uid;
+      
+      // Only seller can delete (or mark as removed)
+      allow delete: if isAuthenticated() 
+        && resource.data.sellerId == request.auth.uid;
+      
+      // BIDS SUBCOLLECTION
+      match /bids/{bidId} {
+        // Anyone can read bids
+        allow read: if true;
+        
+        // Authenticated users can place bids (not on own listings)
+        allow create: if isAuthenticated() 
+          && request.resource.data.bidderId == request.auth.uid
+          && get(/databases/$(database)/documents/listings/$(listingId)).data.sellerId != request.auth.uid;
+        
+        // Bids cannot be updated or deleted
+        allow update, delete: if false;
+      }
+    }
+    
+    // ============================================
+    // ORDERS COLLECTION
+    // ============================================
+    
+    match /orders/{orderId} {
+      // Only buyer or seller can read
+      allow read: if isAuthenticated() 
+        && (resource.data.buyerId == request.auth.uid 
+            || resource.data.sellerId == request.auth.uid);
+      
+      // Authenticated users can create orders
+      allow create: if isAuthenticated() 
+        && request.resource.data.buyerId == request.auth.uid;
+      
+      // Buyer can update payment status, seller can update shipping
+      allow update: if isAuthenticated() 
+        && (resource.data.buyerId == request.auth.uid 
+            || resource.data.sellerId == request.auth.uid);
+      
+      // Orders cannot be deleted
+      allow delete: if false;
+    }
+    
+    // ============================================
+    // CONVERSATIONS COLLECTION
+    // ============================================
+    
+    match /conversations/{conversationId} {
+      // Only participants can read
+      allow read: if isAuthenticated() 
+        && isParticipant(resource.data.participants);
+      
+      // Authenticated users can create conversations
+      allow create: if isAuthenticated() 
+        && isParticipant(request.resource.data.participants);
+      
+      // Participants can update (mark read, archive)
+      allow update: if isAuthenticated() 
+        && isParticipant(resource.data.participants);
+      
+      // Conversations cannot be deleted
+      allow delete: if false;
+      
+      // MESSAGES SUBCOLLECTION
+      match /messages/{messageId} {
+        // Participants can read messages
+        allow read: if isAuthenticated() 
+          && isParticipant(get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants);
+        
+        // Participants can send messages
+        allow create: if isAuthenticated() 
+          && isParticipant(get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants)
+          && request.resource.data.senderId == request.auth.uid;
+        
+        // Sender can edit their own messages
+        allow update: if isAuthenticated() 
+          && resource.data.senderId == request.auth.uid;
+        
+        // Messages cannot be hard deleted
+        allow delete: if false;
+      }
+    }
+    
+    // ============================================
+    // REVIEWS COLLECTION
+    // ============================================
+    
+    match /reviews/{reviewId} {
+      // Anyone can read reviews
+      allow read: if true;
+      
+      // Authenticated users can create reviews for completed orders
+      allow create: if isAuthenticated() 
+        && request.resource.data.reviewerId == request.auth.uid
+        && request.resource.data.isVerifiedPurchase == true;
+      
+      // Reviewed user can add response
+      allow update: if isAuthenticated() 
+        && resource.data.reviewedId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['response', 'updatedAt']);
+      
+      // Reviews cannot be deleted
+      allow delete: if false;
+    }
+    
+    // ============================================
+    // ADMIN ACCESS (for Cloud Functions)
+    // ============================================
+    
+    // Cloud Functions use Admin SDK which bypasses these rules
+    // No special rules needed here
+  }
+}

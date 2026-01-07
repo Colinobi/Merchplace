@@ -1,0 +1,129 @@
+.navbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.75rem 0;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logoIcon {
+    font-size: 1.5rem;
+}
+
+.logoText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.searchWrapper {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+    display: flex;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    padding-right: 3rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--primary);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.searchBtn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.searchBtn:hover {
+    color: var(--primary);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.sellBtn {
+    background: var(--primary);
+    color: var(--text-inverse);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.sellBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-inverse);
+}
+
+.walletBtn {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-main) !important;
+    border-radius: var(--radius) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    height: auto !important;
+    padding: 0.6rem 1rem !important;
+}
+
+.walletBtn:hover {
+    background: var(--surface-hover) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .searchWrapper {
+        display: none;
+    }
+
+    .container {
+        justify-content: space-between;
+    }
+}

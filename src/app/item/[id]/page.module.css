@@ -1,0 +1,407 @@
+.main {
+    padding-bottom: 5rem;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.loading,
+.notFound {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-muted);
+}
+
+.notFound h2 {
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.notFound button {
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+/* Gallery */
+.gallery {
+    position: sticky;
+    top: 5rem;
+    align-self: start;
+}
+
+.mainImage {
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+.mainImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+}
+
+/* Thumbnails */
+.thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.thumbnail {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 2px solid transparent;
+    background: var(--background);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.thumbnailActive {
+    border-color: var(--primary);
+}
+
+/* Info Section */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.priceSection {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.bidBadge {
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Seller Card */
+.sellerCard {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.sellerCard:hover {
+    border-color: var(--primary);
+}
+
+.sellerAvatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.sellerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.sellerName {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.sellerMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.sellerRep {
+    font-size: 0.85rem;
+    color: var(--warning);
+    font-weight: 500;
+}
+
+.sellerDot {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.sellerStats {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.buyBtn {
+    flex: 1;
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.buyBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.offerBtn {
+    flex: 1;
+    background: var(--surface);
+    color: var(--text-main);
+    padding: 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.offerBtn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.ownerBadge {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Bid History */
+.bidHistory {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+}
+
+.bidHistory h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-main);
+}
+
+.bidList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bidItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: var(--radius);
+}
+
+.bidderInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bidderAvatar {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--accent), #ff8c5a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.bidderName {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.bidDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+}
+
+.bidAmount {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.bidTime {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.noBids {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Details */
+.details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+}
+
+.details h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-main);
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.9rem;
+}
+
+.detailRow span:first-child {
+    color: var(--text-muted);
+}
+
+.detailRow span:last-child {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.statusActive {
+    color: var(--success) !important;
+    text-transform: capitalize;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .gallery {
+        position: static;
+    }
+
+    .mainImage {
+        aspect-ratio: 4/3;
+    }
+
+    .price {
+        font-size: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .sellerMeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .sellerDot {
+        display: none;
+    }
+}
