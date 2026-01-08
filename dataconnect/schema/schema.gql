@@ -1,0 +1,31 @@
+type User @table {
+  username: String!
+  email: String
+  profilePictureUrl: String
+  createdAt: Timestamp!
+}
+
+type NoItem @table {
+  user: User!
+  name: String!
+  description: String
+  priority: Int
+  targetFrequency: String
+  createdAt: Timestamp!
+}
+
+type NoLog @table {
+  user: User!
+  noItem: NoItem!
+  logDate: Date!
+  notes: String
+  createdAt: Timestamp!
+}
+
+type Reminder @table {
+  user: User!
+  noItem: NoItem
+  reminderTime: Timestamp!
+  frequency: String!
+  message: String
+}

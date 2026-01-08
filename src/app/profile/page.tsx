@@ -12,7 +12,8 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function ProfilePage() {
-    const { publicKey, username } = useUser();
+    const { user, publicKey } = useUser();
+    const username = user?.username;
     const { disconnect, connected } = useWallet();
     const [myListings, setMyListings] = useState<Listing[]>([]);
     const [loading, setLoading] = useState(true);

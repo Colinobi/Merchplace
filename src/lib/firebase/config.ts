@@ -1,20 +1,34 @@
+// Firebase SDK imports
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
-// TODO: Replace with your actual Firebase Configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSy_PLACEHOLDER",
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "merchplace-app.firebaseapp.com",
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "merchplace-app",
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "merchplace-app.appspot.com",
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "123456789",
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:123456789:web:abcdef"
+    apiKey: "AIzaSyCUNgYrV8jJoNwKb-8iytQpYfpzK91Y18I",
+    authDomain: "merchplace-prod.firebaseapp.com",
+    projectId: "merchplace-prod",
+    storageBucket: "merchplace-prod.firebasestorage.app",
+    messagingSenderId: "1037973177634",
+    appId: "1:1037973177634:web:1f0da69601a726de10517b",
+    measurementId: "G-NYFK9R4N11"
 };
 
-// Initialize Firebase
+// Initialize Firebase (prevent re-initialization in Next.js hot reload)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+// Firebase services
 const db = getFirestore(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
 
-export { app, db, storage };
+// Analytics (only in browser to avoid SSR errors)
+let analytics = null;
+if (typeof window !== "undefined") {
+    import("firebase/analytics").then(({ getAnalytics }) => {
+        analytics = getAnalytics(app);
+    });
+}
+
+export { app, db, storage, auth, analytics };

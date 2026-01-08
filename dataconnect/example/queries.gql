@@ -1,0 +1,3 @@
+mutation CreateNewUser($username: String!, $email: String!) @auth(level: USER) {
+  user_insert(data: {username: $username, email: $email, createdAt_expr: "request.time"})
+}

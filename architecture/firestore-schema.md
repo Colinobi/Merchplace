@@ -1,4 +1,4 @@
-# Merchplace Firestore Schema
+# Merchplace Firestore Schema 
 
 > eBay-inspired database architecture for Firebase/Firestore with GCP backend.
 > Optimized for fast reads with strategic denormalization.
