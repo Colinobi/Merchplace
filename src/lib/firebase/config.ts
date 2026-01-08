@@ -4,15 +4,15 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration (from environment variables)
 const firebaseConfig = {
-    apiKey: "AIzaSyCUNgYrV8jJoNwKb-8iytQpYfpzK91Y18I",
-    authDomain: "merchplace-prod.firebaseapp.com",
-    projectId: "merchplace-prod",
-    storageBucket: "merchplace-prod.firebasestorage.app",
-    messagingSenderId: "1037973177634",
-    appId: "1:1037973177634:web:1f0da69601a726de10517b",
-    measurementId: "G-NYFK9R4N11"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase (prevent re-initialization in Next.js hot reload)
